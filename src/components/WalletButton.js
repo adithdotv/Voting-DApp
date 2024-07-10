@@ -80,18 +80,18 @@ const WalletButton = () => {
   };
 
   return (
-    <header className="absolute top-0 right-0 m-4">
+    <header className="absolute top-0 right-4 m-4">
       {currentAccount ? (
         <div className="relative inline-block text-left">
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={toggleDropdown}>
-            <FaUser className="text-white" />
-            <span className="text-white">{abbreviateAddress(currentAccount)}</span>
-          </div>
+          <button className="flex items-center space-x-2 bg-white hover:bg-gray-100 py-2 px-4 rounded-lg" onClick={toggleDropdown}>
+            <FaUser className="text-black" />
+            <span className="text-black">{abbreviateAddress(currentAccount)}</span>
+          </button>
           {dropdownOpen && (
-            <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 <button
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                  className="block px-2 py-1 text-sm text-gray-700 hover:bg-gray-100 w-full text-center"
                   onClick={disconnectWallet}
                 >
                   Disconnect Wallet
