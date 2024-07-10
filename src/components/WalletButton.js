@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { FaUser } from 'react-icons/fa';
+import VotingContract from '../Voting.json'
 
 const sepoliaChainId = '0xaa36a7'; // Chain ID for Sepolia
 const sepoliaChainParams = {
@@ -16,9 +17,12 @@ const sepoliaChainParams = {
   blockExplorerUrls: ['https://sepolia.etherscan.io'],
 };
 
+const contractAddress = '0x02c3e449D11D088146E039E64F699F3464D1891f';
+
 const WalletButton = () => {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [contract, setContract] = useState(null);   
 
   useEffect(() => {
     const savedAccount = localStorage.getItem('connectedAccount');
@@ -57,6 +61,14 @@ const WalletButton = () => {
         const accounts = await web3.eth.getAccounts();
         setCurrentAccount(accounts[0]);
         localStorage.setItem('connectedAccount', accounts[0]);
+
+        const contract = new web3.eth.Contract(VotingContract.abi, contractAddress);
+        setContract(contract);
+        
+
+        console.log('Connected to wallet and contract')
+        console.log(contract)
+        
       } else {
         alert('MetaMask is not installed. Please install it to use this app.');
       }
